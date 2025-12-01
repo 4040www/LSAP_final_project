@@ -12,7 +12,7 @@ Gitea (v1.25.2) — [修復 issue #35800](https://github.com/go-gitea/gitea/issu
 - 先切換到來源目錄：
 
 ```
-cd gitea-source
+cd gitea
 ```
 
 - 使用適當的 build 標籤建置（範例）:
@@ -26,10 +26,11 @@ TAGS="bindata sqlite sqlite_unlock_notify" make build
 ```
 ./gitea web
 ```
+- 系統需要安裝 go, node, make ，詳情請參考[官網](https://docs.gitea.com/installation/install-from-source)
 
 2) 使用 Docker (Installation with Docker)
 
-- 若有提供 `gitea.tar` 映像，可以先載入映像：
+- 下載 [gitea.tar](https://drive.google.com/file/d/1mewM8wDPs0mBcHIb75wmPJZoicCNuQ-R/view?usp=drive_link) 映像，可以先載入映像：
 
 ```
 docker load --input gitea.tar
@@ -43,14 +44,14 @@ docker run -d -p 8000:3000 -p 2222:22 --name gitea gitea-35800
 
 3) 使用二進位檔 (Installation from binary)
 
+- 下載 [gitea](https://drive.google.com/file/d/17HKr_c-pIA7s9AYUm7NqG27hxoOEIqKC/view?usp=sharing)
 - 將二進位檔複製到系統 PATH 中
 
 ```
 sudo cp gitea /usr/local/bin/gitea
 ```
 
-- 其他步驟請參考官網
-- 之後即可用 `gitea` 指令啟動或安裝為服務，詳情請參考官方文件。
+- 其他步驟請參考[官網](https://docs.gitea.com/installation/install-from-binary)
 
 其他說明
 - 若要取得更多安裝或設定細節，請參閱官方文件： https://docs.gitea.com/category/installation
