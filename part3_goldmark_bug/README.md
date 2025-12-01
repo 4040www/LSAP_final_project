@@ -1,6 +1,14 @@
-Gitea (v1.25.2) — [修復 issue #35800](https://github.com/go-gitea/gitea/issues/35800)
+## Gitea (v1.25.2) — [修復 issue #35800](https://github.com/go-gitea/gitea/issues/35800)
 
-說明
+### bug 解析
+
+對於以單個或多個連字號行開頭的輸入，Goldmark 並沒有將文件解析為一個列表（List 節點），而是將其解析為一個頂層的文本塊（TextBlock）。這個文本塊包含了文字節點，其中包括字面上的星號和空格。根據測試，出現這種結果主要是因為 goldmark-meta 擴展將以連字號開頭的文本識別為 YAML Front Matter 的開頭。這導致整個區塊的解析失敗，並降級為普通的 TextBlock ，最終渲染出錯誤的結果。
+
+為了避免讓 Goldmark 的 meta 擴展或解析器對這些行進行特殊處理，所以目前會對輸入進行預處理，以偵測不是有效 YAML Front Matter 的開頭連字號行（即 ExtractMetadataBytes 返回錯誤或元數據為空）。並在這些開頭的連字號行前面加上一個換行符 (\n)。這樣既能保留連字號，又不會改變解析行為，從而阻止其被誤判為 YAML Front Matter。
+
+-----
+
+### 說明
 - 這個專案包含已修復 issue #35800 的 Gitea 可執行檔與來源（版本：v1.25.2）。
 - 官方安裝文件：https://docs.gitea.com/category/installation
 
